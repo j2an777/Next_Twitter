@@ -1,8 +1,11 @@
+"use client";
 import { ReactNode } from "react";
 import style from './layout.module.css';
 import Link from "next/link";
 import Image from "next/image";
 import ZLogo from '../../../public/zlogo.png';
+import NavMenu from "./_component/NavMenu";
+import LogOutButton from "./_component/LogOutButton";
 
 export default function AfterLoginLayout({ children }: { children: ReactNode }) {
     return (
@@ -15,6 +18,13 @@ export default function AfterLoginLayout({ children }: { children: ReactNode }) 
                                 <Image src={ZLogo} alt="logo" width={40} height={40}/>
                             </div>
                         </Link>
+                        <nav>
+                            <ul>
+                                <NavMenu />
+                            </ul>
+                            <Link href="/compose/tweet" className={style.postButton}>게시하기</Link>
+                        </nav>
+                        <LogOutButton />
                     </div>
                 </section>
             </header>

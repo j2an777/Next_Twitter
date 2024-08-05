@@ -1,7 +1,11 @@
-export default function Explore() {
+import style from './explore.module.css';
+
+const Explore = () => {
     return (
-        <main>
-            Explore홈페이지
+        <main className={style.main}>
+            검색페이지
         </main>
     )
 }
+
+export default Explore;
