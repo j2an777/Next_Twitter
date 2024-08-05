@@ -4,8 +4,10 @@ import style from './layout.module.css';
 import Link from "next/link";
 import Image from "next/image";
 import ZLogo from '../../../public/zlogo.png';
-import NavMenu from "./_component/NavMenu";
-import LogOutButton from "./_component/LogOutButton";
+import NavMenu from "./_component/_navmenu/NavMenu";
+import LogOutButton from "./_component/_logoutBtn/LogOutButton";
+import TrendSection from "./_component/_trendSection/TrendSection";
+import FollowRecommend from "./_component/_followRecommend/FollowRecommend";
 
 export default function AfterLoginLayout({ children }: { children: ReactNode }) {
     return (
@@ -32,6 +34,7 @@ export default function AfterLoginLayout({ children }: { children: ReactNode }) 
                 <div className={style.rightSectionInner}>
                     <main className={style.main}>{children}</main>
                     <section className={style.rightSection}>
+                        <div style={{ marginBottom: 60, width: 'inherit' }}>
                         <form className={style.search}>
                             <svg width={20} viewBox="0 0 24 24" aria-hidden="true">
                                 <g>
@@ -41,6 +44,9 @@ export default function AfterLoginLayout({ children }: { children: ReactNode }) 
                             </svg>
                             <input type="search" />
                         </form>
+                        </div>
+                        <TrendSection />
+                        <FollowRecommend />
                     </section>
                 </div>
             </div>

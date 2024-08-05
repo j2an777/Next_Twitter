@@ -1,6 +1,6 @@
 "use client";
 import Image from 'next/image';
-import style from './LogOutButton.module.css';
+import style from './logOutButton.module.css';
 
 const LogOutButton = () => {
     const me = { // 임시로 내 정보 있는것처럼
