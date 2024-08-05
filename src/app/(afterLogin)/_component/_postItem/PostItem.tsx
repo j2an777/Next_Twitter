@@ -4,6 +4,7 @@ import Image from 'next/image';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/ko';
+import ActionButtons from '../_actionButtons/ActionButtons';
 
 dayjs.locale('ko');
 dayjs.extend(relativeTime);
@@ -45,7 +46,7 @@ const PostItem = () => {
           <div className={style.postImageSection}>
             {/* <Image src={target.Images[0]?.link} alt='' width={30} height={30}/> */}
           </div>
-          {/* <ActionButtons /> */}
+          <ActionButtons />
         </div>
       </div>
     </article>
