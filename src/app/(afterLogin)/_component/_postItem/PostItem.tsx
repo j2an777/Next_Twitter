@@ -11,7 +11,11 @@ import Image from 'next/image';
 dayjs.locale('ko');
 dayjs.extend(relativeTime);
 
-const PostItem = () => {
+type PostItemProps = {
+  noImage?: boolean;
+}
+
+const PostItem = ({ noImage }: PostItemProps) => {
   const target = {
     postId: 1,
     User: {
@@ -24,7 +28,7 @@ const PostItem = () => {
     Images: [] as any[],
   };
 
-  if (Math.random() > 0.5) {
+  if (Math.random() > 0.5 && !noImage) {
     target.Images.push({ imageId: 1, link: faker.image.urlLoremFlickr() });
   }
 
@@ -60,7 +64,7 @@ const PostItem = () => {
               </Link>
             )}
           </div>
-          <ActionButtons />
+          <ActionButtons white />
         </div>
       </div>
     </PostArticle>
