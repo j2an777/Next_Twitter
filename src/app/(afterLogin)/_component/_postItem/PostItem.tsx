@@ -1,16 +1,19 @@
 import Link from 'next/link';
 import style from './postItem.module.css';
-import Image from 'next/image';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/ko';
 import ActionButtons from '../_actionButtons/ActionButtons';
+import PostArticle from '../_postArticle/PostArticle';
+import { faker } from '@faker-js/faker';
+import Image from 'next/image';
 
 dayjs.locale('ko');
 dayjs.extend(relativeTime);
 
 const PostItem = () => {
   const target = {
+    postId: 1,
     User: {
       id: 'elonmusk',
       nickname: 'Elon Musk',
@@ -18,11 +21,15 @@ const PostItem = () => {
     },
     content: '클론코딩 트위터',
     createdAt: new Date(),
-    Images: [],
+    Images: [] as any[],
   };
 
+  if (Math.random() > 0.5) {
+    target.Images.push({ imageId: 1, link: faker.image.urlLoremFlickr() });
+  }
+
   return (
-    <article className={style.post}>
+    <PostArticle post={target}>
       <div className={style.postWrapper}>
         <div className={style.postUserSection}>
           <Link href={`/${target.User.id}`} className={style.postUserImage}>
@@ -44,12 +51,19 @@ const PostItem = () => {
           </div>
           <div>{target.content}</div>
           <div className={style.postImageSection}>
-            {/* <Image src={target.Images[0]?.link} alt='' width={30} height={30}/> */}
+            {target.Images && target.Images.length > 0 && (
+              <Link
+                href={`/${target.User.id}/status/${target.postId}/photo/${target.Images[0].imageId}`}
+                className={style.postImageSection}
+              >
+                <img src={target.Images[0].link} alt='' />
+              </Link>
+            )}
           </div>
           <ActionButtons />
         </div>
       </div>
-    </article>
+    </PostArticle>
   )
 }
 
