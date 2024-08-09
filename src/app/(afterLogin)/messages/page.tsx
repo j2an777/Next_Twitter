@@ -1,9 +1,20 @@
+import Room from './_component/Room';
 import style from './messages.module.css';
 
-const page = () => {
+const Messages = () => {
   return (
-    <div>메시지 페이지</div>
+    <main className={style.main}>
+      <div className={style.header}>
+        <h3>쪽지</h3>
+      </div>
+      <Room />
+      <Room />
+      <Room />
+      <Room />
+      <Room />
+      <Room />
+    </main>
   )
 }
 
-export default page
+export default Messages
