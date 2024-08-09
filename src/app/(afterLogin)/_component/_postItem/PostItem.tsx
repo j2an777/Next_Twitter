@@ -7,6 +7,7 @@ import ActionButtons from '../_actionButtons/ActionButtons';
 import PostArticle from '../_postArticle/PostArticle';
 import { faker } from '@faker-js/faker';
 import Image from 'next/image';
+import PostImages from '../_postImages/PostImages';
 
 dayjs.locale('ko');
 dayjs.extend(relativeTime);
@@ -30,6 +31,9 @@ const PostItem = ({ noImage }: PostItemProps) => {
 
   if (Math.random() > 0.5 && !noImage) {
     target.Images.push({ imageId: 1, link: faker.image.urlLoremFlickr() });
+    target.Images.push({ imageId: 2, link: faker.image.urlLoremFlickr() });
+    target.Images.push({ imageId: 3, link: faker.image.urlLoremFlickr() });
+    target.Images.push({ imageId: 4, link: faker.image.urlLoremFlickr() });
   }
 
   return (
@@ -54,15 +58,8 @@ const PostItem = ({ noImage }: PostItemProps) => {
             <span className={style.postDate}>{dayjs(target.createdAt).fromNow(true)}</span>
           </div>
           <div>{target.content}</div>
-          <div className={style.postImageSection}>
-            {target.Images && target.Images.length > 0 && (
-              <Link
-                href={`/${target.User.id}/status/${target.postId}/photo/${target.Images[0].imageId}`}
-                className={style.postImageSection}
-              >
-                <img src={target.Images[0].link} alt='' />
-              </Link>
-            )}
+          <div>
+            <PostImages post={target}/>
           </div>
           <ActionButtons white />
         </div>
