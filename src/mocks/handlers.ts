@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw';
 
-export const handlers = () => [
+export const handlers = [
     http.post('/api/login', () => {
         return HttpResponse.json({
             userId: 1,
@@ -13,6 +13,7 @@ export const handlers = () => [
             }
         })
     }),
+
     http.post('/api/logout', () => {
         return new HttpResponse(null, {
             headers: {
