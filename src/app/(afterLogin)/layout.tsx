@@ -1,4 +1,3 @@
-"use client";
 import { ReactNode } from "react";
 import style from './layout.module.css';
 import Link from "next/link";
@@ -9,24 +8,27 @@ import LogOutButton from "./_component/_logoutBtn/LogOutButton";
 import TrendSection from "./_component/_trendSection/TrendSection";
 import FollowRecommend from "./_component/_followRecommend/FollowRecommend";
 import RightSearchZone from "./_component/_rightSearchZone/RightSearchZone";
+import { auth } from "@/auth";
 
 type AfterLoginLayoutProps = {
     children: ReactNode;
     modal: ReactNode;
 }
 
-export default function AfterLoginLayout({ children, modal }: AfterLoginLayoutProps) {
+export default async function AfterLoginLayout({ children, modal }: AfterLoginLayoutProps) {
+    const session = await auth();
+
     return (
         <div className={style.container}>
             <header className={style.leftSectionWrapper}>
                 <section className={style.leftSection}>
                     <div className={style.leftSectionFixed}>
-                        <Link className={style.logo} href="/home">
+                        <Link className={style.logo} href={session?.user ? '/home' : '/'}>
                             <div className={style.logoPill}>
                                 <Image src={ZLogo} alt="logo" width={40} height={40}/>
                             </div>
                         </Link>
-                        <nav>
+                        {session?.user && <><nav>
                             <ul>
                                 <NavMenu />
                             </ul>
@@ -36,6 +38,7 @@ export default function AfterLoginLayout({ children, modal }: AfterLoginLayoutPr
                             </Link>
                         </nav>
                         <LogOutButton />
+                        </>}
                     </div>
                 </section>
             </header>
