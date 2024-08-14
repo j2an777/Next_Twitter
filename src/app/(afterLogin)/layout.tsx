@@ -9,6 +9,7 @@ import TrendSection from "./_component/_trendSection/TrendSection";
 import FollowRecommend from "./_component/_followRecommend/FollowRecommend";
 import RightSearchZone from "./_component/_rightSearchZone/RightSearchZone";
 import { auth } from "@/auth";
+import RQProvider from "./_component/_rqProvider/RQProvider";
 
 type AfterLoginLayoutProps = {
     children: ReactNode;
@@ -42,6 +43,7 @@ export default async function AfterLoginLayout({ children, modal }: AfterLoginLa
                     </div>
                 </section>
             </header>
+            <RQProvider>
             <div className={style.rightSectionWrapper}>
                 <div className={style.rightSectionInner}>
                     <main className={style.main}>{children}</main>
@@ -53,6 +55,7 @@ export default async function AfterLoginLayout({ children, modal }: AfterLoginLa
                 </div>
             </div>
             {modal}
+            </RQProvider>
         </div>
     )
 }
