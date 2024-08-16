@@ -1,12 +1,13 @@
 import BackButton from '../_component/_backButton/BackButton';
 import PostItem from '../_component/_postItem/PostItem';
 import SearchForm from '../_component/_searchForm/SearchForm';
-import Tab from './_component/Tab';
+import SearchResult from './_component/_searchResult/SearchResult';
+import Tab from './_component/_tab/Tab';
 import style from './search.module.css';
 
 type SearchProps = {
   searchParams: {
-    q?: string,
+    q: string,
     f?: string,
     pf?: string,
   };
@@ -27,15 +28,7 @@ const Search = ({ searchParams }: SearchProps) => {
         <Tab />
       </div>
       <div className={style.list}>
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        {/* <SearchResult searchParams={searchParams} /> */}
+        <SearchResult searchParams={searchParams} />
       </div>
     </main>
   )
