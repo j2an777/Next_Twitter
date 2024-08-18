@@ -6,7 +6,6 @@ import 'dayjs/locale/ko';
 import ActionButtons from '../_actionButtons/ActionButtons';
 import PostArticle from '../_postArticle/PostArticle';
 import { faker } from '@faker-js/faker';
-import Image from 'next/image';
 import PostImages from '../_postImages/PostImages';
 import { Post } from '@/model/Post';
 

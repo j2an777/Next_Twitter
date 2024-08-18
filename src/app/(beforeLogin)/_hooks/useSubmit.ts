@@ -31,7 +31,6 @@ export const useSubmit = async (prevState: any, formData: FormData) => {
       body: formData,
       credentials: 'include',
     })
-    console.log(response.status);
 
     if (response.status === 403) {
       return { message: 'user_exists' };
