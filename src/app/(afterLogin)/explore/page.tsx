@@ -1,5 +1,5 @@
 import SearchForm from '../_component/_searchForm/SearchForm';
-import Trend from '../_component/_trend/Trend';
+import ExploreSection from './_component/_exploreSection/ExploreSection';
 import style from './explore.module.css';
 
 const Explore = () => {
@@ -10,13 +10,7 @@ const Explore = () => {
             </div>
             <div className={style.trend}>
                 <h3>나를 위한 트렌드</h3>
-                <Trend />
-                <Trend />
-                <Trend />
-                <Trend />
-                <Trend />
-                <Trend />
-                <Trend />
+                <ExploreSection />
             </div>
         </main>
     )
