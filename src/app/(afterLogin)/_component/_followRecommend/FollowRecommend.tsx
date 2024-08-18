@@ -8,7 +8,7 @@ import { getFollowRecommends } from './_hooks/getFollowRecommends';
 
 const FollowRecommend = () => {
   const { data } = useQuery<User[]>({
-    queryKey: ['trends'],
+    queryKey: ['users', 'followRecommends'],
     queryFn: getFollowRecommends,
     staleTime: 60 * 1000,
     gcTime: 300 * 1000,
