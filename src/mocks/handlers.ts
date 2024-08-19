@@ -15,7 +15,7 @@ const User = [
     {id: 'elonmusk', nickname: 'Elon Musk', image:'/yRsRRjGO.jpg'},
     {id: 'zeroch0', nickname: '제로초', image:'/5Udwvqim.jpg'},
     {id: 'j2an777', nickname: '즤니', image:faker.image.urlLoremFlickr()},
-]
+];
 
 export const handlers = [
     http.post('/api/login', () => {
@@ -274,9 +274,17 @@ export const handlers = [
 
     http.get('/api/users/:userId', ({ request, params }) => {
         const { userId } = params;
-        return HttpResponse.json(
-            User[1]
-        );
+        const found = User.find((v) => v.id === userId);
+
+        if (found) {
+            return HttpResponse.json(
+                found
+            );
+        }
+
+        return HttpResponse.json({ message: 'no_such_user'}, {
+            status: 404,
+        });
     }),
 
     http.get('/api/users/:userId/posts/:postId', ({ request, params }) => {
@@ -355,17 +363,17 @@ export const handlers = [
     http.get('/api/trends', ({ request }) => {
         return HttpResponse.json(
             [
-                {tagId: 0, title: '영삼이', count: 142},
+                {tagId: 0, title: '영삼이', count: 1042},
                 {tagId: 1, title: '일삼이', count: 1242},
                 {tagId: 2, title: '이삼이', count: 1409},
                 {tagId: 3, title: '삼삼이', count: 7239},
-                {tagId: 4, title: '사삼이', count: 243},
-                {tagId: 5, title: '오삼이', count: 533},
+                {tagId: 4, title: '사삼이', count: 2433},
+                {tagId: 5, title: '오삼이', count: 5331},
                 {tagId: 6, title: '육삼이', count: 2039},
-                {tagId: 7, title: '칠삼이', count: 885},
-                {tagId: 8, title: '팔삼이', count: 609},
+                {tagId: 7, title: '칠삼이', count: 1885},
+                {tagId: 8, title: '팔삼이', count: 1609},
                 {tagId: 9, title: '구삼이', count: 3205},
             ]
         )
-    })
+    }),
 ];
