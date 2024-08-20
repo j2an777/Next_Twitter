@@ -9,17 +9,20 @@ type UserPostsProps = {
   username: string;
 }
 export default function UserPosts({ username }: UserPostsProps) {
+  
+    const queryClient = useQueryClient();
+    const post = queryClient.getQueryData(['users', username]);
+
     const { data } = useQuery<Post[], Object, Post[], [_1: string, _2: string, _3: string]>({
       queryKey: ['posts', 'users', username],
       queryFn: getUserPosts,
       staleTime: 60 * 1000, // fresh -> stale, 5분이라는 기준
       gcTime: 300 * 1000,
+      enabled: !!post,
     });
 
-    const queryClient = useQueryClient();
-    const user = queryClient.getQueryData(['users', username]);
 
-    if (user) {
+    if (post) {
         return data?.map((post) => (
             <PostItem key={post.postId} post={post} />
         ))
