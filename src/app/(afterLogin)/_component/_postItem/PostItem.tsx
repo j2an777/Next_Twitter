@@ -5,7 +5,6 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/ko';
 import ActionButtons from '../_actionButtons/ActionButtons';
 import PostArticle from '../_postArticle/PostArticle';
-import { faker } from '@faker-js/faker';
 import PostImages from '../_postImages/PostImages';
 import { Post } from '@/model/Post';
 
@@ -18,13 +17,6 @@ type PostItemProps = {
 }
 
 const PostItem = ({ noImage, post }: PostItemProps) => {
-  
-  if (Math.random() > 0.5 && !noImage) {
-    post.Images.push({ imageId: 1, link: faker.image.urlLoremFlickr() });
-    post.Images.push({ imageId: 2, link: faker.image.urlLoremFlickr() });
-    post.Images.push({ imageId: 3, link: faker.image.urlLoremFlickr() });
-    post.Images.push({ imageId: 4, link: faker.image.urlLoremFlickr() });
-  }
 
   return (
     <PostArticle post={post}>
@@ -48,9 +40,9 @@ const PostItem = ({ noImage, post }: PostItemProps) => {
             <span className={style.postDate}>{dayjs(post.createdAt).fromNow(true)}</span>
           </div>
           <div>{post.content}</div>
-          <div>
+          {!noImage && <div>
             <PostImages post={post}/>
-          </div>
+          </div>}
           <ActionButtons white />
         </div>
       </div>
