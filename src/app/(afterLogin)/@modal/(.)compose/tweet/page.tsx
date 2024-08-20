@@ -1,10 +1,12 @@
 "use client";
 import { useRef, useState } from 'react';
 import style from './tweetModal.module.css';
+import { useRouter } from 'next/navigation';
 
 const Page = () => {
     const [content, setContent] = useState();
     const imageRef = useRef<HTMLInputElement>(null);
+    const router = useRouter();
 
     const me = {
         id: 'j2an777',
@@ -13,7 +15,9 @@ const Page = () => {
 
     const onSubmit = () => {};
 
-    const onClickClose = () => {};
+    const onClickClose = () => {
+      router.back();
+    };
 
     const onChangeContent = () => {};
 
