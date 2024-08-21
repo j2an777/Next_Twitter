@@ -1,5 +1,9 @@
-export const getPostRecommends = async () => {
-    const res = await fetch('http://localhost:9090/api/postRecommends', {
+type GetPostRecommendsProps = {
+    pageParam: number;
+}
+
+export const getPostRecommends = async ({ pageParam }: GetPostRecommendsProps) => {
+    const res = await fetch(`http://localhost:9090/api/postRecommends?cursor=${pageParam}`, {
         next: {
             tags: ['posts', 'recommends'],
         },
