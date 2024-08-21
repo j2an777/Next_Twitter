@@ -17,6 +17,10 @@ const User = [
     {id: 'j2an777', nickname: '즤니', image:faker.image.urlLoremFlickr()},
 ];
 
+const delay = (ms: number) => new Promise ((res) => {
+    setTimeout(res, ms);
+});
+
 export const handlers = [
     http.post('/api/login', () => {
         return HttpResponse.json({
@@ -52,7 +56,8 @@ export const handlers = [
         })
     }),
 
-    http.get('/api/postRecommends', ({ request }) => {
+    http.get('/api/postRecommends', async ({ request }) => {
+        await delay(2000);
         const url = new URL(request.url);
         const cursor = parseInt(url.searchParams.get('cursor') as string) || 0;
 
@@ -109,7 +114,8 @@ export const handlers = [
         )
     }),
 
-    http.get('/api/followingPosts', ({ request }) => {
+    http.get('/api/followingPosts', async ({ request }) => {
+        await delay(2000);
         return HttpResponse.json(
             [
                 {
