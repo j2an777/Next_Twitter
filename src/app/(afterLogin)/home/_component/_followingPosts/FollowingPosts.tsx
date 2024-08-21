@@ -2,12 +2,12 @@
 
 import PostItem from "@/app/(afterLogin)/_component/_postItem/PostItem";
 import { Post } from "@/model/Post";
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { getFollowingPosts } from "../../_hooks/getFollowingPosts";
 
 const FollowingPosts = () => {
 
-    const { data } = useQuery<Post[]>({
+    const { data } = useSuspenseQuery<Post[]>({
         queryKey: ['posts', 'followings'],
         queryFn: () => getFollowingPosts(),
         staleTime: 60 * 1000,

@@ -3,13 +3,13 @@
 import PostItem from "@/app/(afterLogin)/_component/_postItem/PostItem";
 import { Post } from "@/model/Post";
 import { getPostRecommends } from "../../_hooks/getPostRecommends";
-import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
+import { InfiniteData, useSuspenseInfiniteQuery } from "@tanstack/react-query";
 import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
 const PostRecommends = () => {
 
-    const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery<Post[], Object, InfiniteData<Post[]>, [_1: string, _2: string], number>({
+    const { data, fetchNextPage, hasNextPage, isFetching, isError } = useSuspenseInfiniteQuery<Post[], Object, InfiniteData<Post[]>, [_1: string, _2: string], number>({
         queryKey: ['posts', 'recommends'],
         queryFn: getPostRecommends,
         staleTime: 60 * 1000,
@@ -28,6 +28,10 @@ const PostRecommends = () => {
             !isFetching && hasNextPage && fetchNextPage();
         }
     }, [inView, isFetching, hasNextPage, fetchNextPage]);
+
+    if (isError) {
+        return '에러 처리해라';
+    }
 
     return (
         <>
